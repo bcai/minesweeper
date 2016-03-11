@@ -6,11 +6,15 @@ class Tile
     @adjacent_bomb_count = 0
   end
 
-  def reveal(neighbors)
+  def face_up?
+    @face_up
+  end
+
+  def reveal(neighbor_tiles)
     return :explode if @bomb
 
-    neighbors.each do |neighbor|
-      @adjacent_bomb_count += 1 if neighbor.bomb?
+    neighbor_tiles.each do |neighbor_tile|
+      @adjacent_bomb_count += 1 if neighbor_tile.bomb?
     end
 
     @face_up = true
@@ -18,6 +22,7 @@ class Tile
   end
 
   def to_s
+    return "*" if bomb?
     @face_up ? @adjacent_bomb_count.to_s : " "
   end
 

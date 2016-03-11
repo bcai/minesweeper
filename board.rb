@@ -28,7 +28,7 @@ class Board
     @grid[row][col]
   end
 
-  def neighbors(pos)
+  def neighbor_positions(pos)
     row, col = pos
 
     surrounding_spaces = [[row - 1, col - 1],
@@ -43,7 +43,7 @@ class Board
     surrounding_spaces.select { |pos| on_board?(pos) }
   end
 
-  
+
 
   private
   def on_board?(pos)
