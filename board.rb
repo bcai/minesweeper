@@ -4,7 +4,7 @@ class Board
   def self.random_board
     tiles = []
     71.times { tiles << Tile.new }
-    10.times { tiles << Tile.new(true) }
+    10.times { tiles << Tile.new(true) } # tiles containing bombs
     tiles.shuffle!
 
     Board.new(Array.new(9) { Array.new(9) { tiles.pop } })
@@ -17,6 +17,7 @@ class Board
   def render
     puts "  #{(0..8).to_a.join(" ")}"
 
+    #implicit call to to_s on Tile objects
     @grid.each_with_index do |row,index|
       puts "#{index} #{row.join(" ")}"
     end
@@ -40,6 +41,7 @@ class Board
                           [row + 1, col    ],
                           [row + 1, col + 1]]
 
+    #  array of valid neighbor positions within the board
     surrounding_spaces.select { |pos| on_board?(pos) }
   end
 

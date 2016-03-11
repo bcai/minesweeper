@@ -10,7 +10,7 @@ class Tile
     @face_up
   end
 
-  def reveal(neighbor_tiles)
+  def reveal(neighbor_tiles) #array of neighboring tiles
     return :explode if @bomb
 
     neighbor_tiles.each do |neighbor_tile|
