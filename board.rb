@@ -43,6 +43,8 @@ class Board
     surrounding_spaces.select { |pos| on_board?(pos) }
   end
 
+  
+
   private
   def on_board?(pos)
     row, col = pos
