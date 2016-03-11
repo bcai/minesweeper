@@ -14,5 +14,15 @@ class Board
     @grid = grid
   end
 
+  def render
+    puts "  #{(0..8).to_a.join(" ")}"
+    @grid.each_with_index do |row,index|
+      puts "#{index} #{row.join(" ")}"
+    end
+    nil
+  end
 
+  def [](row,col)
+    @grid[row][col]
+  end
 end
