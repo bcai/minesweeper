@@ -16,13 +16,36 @@ class Board
 
   def render
     puts "  #{(0..8).to_a.join(" ")}"
+
     @grid.each_with_index do |row,index|
       puts "#{index} #{row.join(" ")}"
     end
+
     nil
   end
 
   def [](row,col)
     @grid[row][col]
+  end
+
+  def neighbors(pos)
+    row, col = pos
+
+    surrounding_spaces = [[row - 1, col - 1],
+                          [row - 1, col    ],
+                          [row - 1, col + 1],
+                          [row    , col - 1],
+                          [row    , col + 1],
+                          [row + 1, col - 1],
+                          [row + 1, col    ],
+                          [row + 1, col + 1]]
+
+    surrounding_spaces.select { |pos| on_board?(pos) }
+  end
+
+  private
+  def on_board?(pos)
+    row, col = pos
+    row.between?(0,8) && col.between?(0,8)
   end
 end
